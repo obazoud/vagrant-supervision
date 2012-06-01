@@ -1,0 +1,20 @@
+[external "cookbooks/apt"]
+	path = cookbooks/apt
+	url = https://github.com/opscode-cookbooks/apt
+	branch = master
+[external "cookbooks/python"]
+	path = cookbooks/python
+	url = https://github.com/opscode-cookbooks/python
+	branch = master
+[external "cookbooks/apache2"]
+	path = cookbooks/apache2
+	url = https://github.com/opscode-cookbooks/apache2
+	branch = master
+[external "cookbooks/runit"]
+	path = cookbooks/runit
+	url = https://github.com/opscode-cookbooks/runit
+	branch = master
+[external "cookbooks/graphite"]
+	path = cookbooks/graphite
+	url = https://github.com/heavywater/chef-graphite
+	branch = master
