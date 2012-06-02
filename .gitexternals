@@ -18,3 +18,15 @@
 	path = cookbooks/graphite
 	url = https://github.com/heavywater/chef-graphite
 	branch = master
+[external "cookbooks/java"]
+	path = cookbooks/java
+	url = git://github.com/opscode-cookbooks/java.git
+	branch = master
+[external "cookbooks/ark"]
+	path = cookbooks/ark
+	url = git://github.com/bryanwb/chef-ark.git
+	branch = master
+[external "cookbooks/tomcat"]
+	path = cookbooks/tomcat
+	url = git@github.com:obazoud/tomcat.git
+	branch = master

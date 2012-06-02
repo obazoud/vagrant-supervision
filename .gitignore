@@ -3,3 +3,6 @@ cookbooks/python
 cookbooks/apache2
 cookbooks/runit
 cookbooks/graphite
+cookbooks/java
+cookbooks/ark
+cookbooks/tomcat
