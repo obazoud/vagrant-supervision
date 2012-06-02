@@ -7,7 +7,7 @@ Vagrant::Config.run do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "lucid32"
+  config.vm.box = "precise64"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
@@ -72,8 +72,15 @@ Vagrant::Config.run do |config|
   #
   #   # You may also specify custom JSON attributes:
   #   chef.json = { :mysql_password => "foo" }
-    chef.add_recipe 'apt
-    chef.add_recipe 'graphite'
+    chef.add_recipe "apt"
+    chef.add_recipe "graphite"
+
+    chef.json = {
+      :graphite => {
+        :python_version => "2.7"
+      }
+    }
+
   end
 
   # Enable provisioning with chef server, specifying the chef server URL,
