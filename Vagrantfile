@@ -75,8 +75,20 @@ Vagrant::Config.run do |config|
   #   chef.json = { :mysql_password => "foo" }
     chef.add_recipe "apt"
     chef.add_recipe "graphite"
+    chef.add_recipe "java"
+    chef.add_recipe "tomcat::webapp"
 
     chef.json = {
+      :java => {
+        :install_flavor => "oracle",
+        :jdk => {
+          "6" => {
+            :x86_64 => {
+              :url => "http://10.0.2.2/chef/jdk-6u30-linux-x64.bin"
+            }
+          }
+        }
+      },
       :graphite => {
         :python_version => "2.7"
       }
