@@ -15,8 +15,6 @@ end
 set :deploy_to do 
   "/usr/local/apps/#{application}"
 end
-sudo "mkdir -p /usr/local/apps/#{application}/releases"
-sudo "chown -R vagrant /usr/local/apps/#{application}"
 
 # tomcat server
 namespace :tomcat do
@@ -54,6 +52,8 @@ end
 # restart tomcat
 namespace :deploy do
   task :restart do
+    sudo "mkdir -p /usr/local/apps/#{application}/releases"
+    sudo "chown -R vagrant /usr/local/apps/#{application}"
     tomcat.restart
   end
 end
