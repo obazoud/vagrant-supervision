@@ -10,5 +10,8 @@ role :web, "vagrant"
 role :app, "vagrant"
 #role :db,  "vagrant", :primary => true
 
+set :graphite_host, "localhost"
+set :graphite_port, "3000"
+
 server "vagrant", :app, :web
 
