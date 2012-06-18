@@ -33,6 +33,16 @@ namespace :tomcat do
   end
 end
 
+# graphite
+namespace :graphite do
+  task :notify_deploy do
+    run "echo \"events.deploy.website\" 1 `date +%s` | nc #{graphite_host} #{graphite_port}"
+  end
+  task :notify_rollback do
+    run "echo \"events.deploy.website\" -1 `date +%s` | nc #{graphite_host} #{graphite_port}"
+  end
+end
+
 #after 'deploy:setup' do
 after 'deploy:create_symlink' do
   cmd = "ln -sf #{deploy_to}/current/`basename #{war}` #{tomcat_home}/webapps/`basename #{war}`"
@@ -49,11 +59,12 @@ before 'deploy:update_code' do
   end
 end
 
-# restart tomcat
+# restart
 namespace :deploy do
   task :restart do
     sudo "mkdir -p /usr/local/apps/#{application}/releases"
     sudo "chown -R vagrant /usr/local/apps/#{application}"
+    graphite.notify_deploy
     tomcat.restart
   end
 end
