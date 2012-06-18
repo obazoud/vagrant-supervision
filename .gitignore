@@ -1,3 +1,4 @@
+.vagrant
 cookbooks/apt
 cookbooks/python
 cookbooks/apache2
