@@ -43,18 +43,21 @@ namespace :graphite do
   end
 end
 
+#before 'deploy:check' do
+#    sudo "mkdir -p /usr/local/apps/#{application}/releases"
+#    sudo "chown -R vagrant /usr/local/apps/#{application}"
+#    sudo "chgrp -R vagrant /usr/local/apps/#{application}"
+#end
+
 #after 'deploy:setup' do
 after 'deploy:create_symlink' do
-  cmd = "ln -sf #{deploy_to}/current/`basename #{war}` #{tomcat_home}/webapps/`basename #{war}`"
-#  cmd = "ln -sf #{deploy_to}/current/`basename #{war}` #{tomcat_home}/webapps/#{application}"
-  puts cmd
-  sudo cmd
+  sudo "rm -rf #{tomcat_home}/webapps/`basename #{war} .war`"
+  sudo "ln -sf #{deploy_to}/current/`basename #{war}` #{tomcat_home}/webapps/`basename #{war}`"
 end
 
 before 'deploy:update_code' do
   unless(war.nil?)
-    puts "get war"
-    system("cp #{war} #{deploy_from}")
+    system "cp #{war} #{deploy_from}"
     puts system("ls -l #{deploy_from}")
   end
 end
@@ -62,8 +65,6 @@ end
 # restart
 namespace :deploy do
   task :restart do
-    sudo "mkdir -p /usr/local/apps/#{application}/releases"
-    sudo "chown -R vagrant /usr/local/apps/#{application}"
     graphite.notify_deploy
     tomcat.restart
   end

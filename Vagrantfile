@@ -81,10 +81,12 @@ Vagrant::Config.run do |config|
     chef.json = {
       :java => {
         :install_flavor => "oracle",
+        :jdk_version => "7",
         :jdk => {
-          "6" => {
+          "7" => {
             :x86_64 => {
-              :url => "http://10.0.2.2/chef/jdk-6u30-linux-x64.bin"
+              :url => "http://10.0.2.2/chef/jdk-7u5-linux-x64.tar.gz",
+              :checksum => "2a118ce9350d0c0cbaaeef286d04980df664b215d6aaf7bc1d4469abf05711bf"
             }
           }
         }
